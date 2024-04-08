@@ -1,12 +1,12 @@
-export interface msgsResponse {
-    _id: string;
+export interface msgsRequest {
     fromUser: string;
     toUser: string;
-    msgs: string;
+    msg: string;
     createdIn: string;
 }
 
-export interface msgsRequest {
+
+export interface usersRequest{
     userA: string;
     userB: string;
 }

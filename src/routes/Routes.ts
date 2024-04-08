@@ -7,6 +7,7 @@ router.get("/",(req: Request, res: Response)=>{
 })
 
 router.post("/previousMsgs", Controll.previousMsgsController.previousPost);
+router.post("/setNewMsg", Controll.setNewMsgController.newMsgPost)
 
 
 

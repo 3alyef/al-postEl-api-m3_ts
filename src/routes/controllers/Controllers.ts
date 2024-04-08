@@ -1,3 +1,3 @@
 import previousMsgsController from "./PreviousMsgsController/PreviousMsgsController";
-
-export { previousMsgsController };
+import setNewMsgController from "./SetNewMsgController/SetNewMsgController";
+export { previousMsgsController, setNewMsgController };

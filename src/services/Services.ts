@@ -1,3 +1,3 @@
 import GetPrevMsgs from "./GetPrevMsgs/GetPrevMsgs.service";
-
-export { GetPrevMsgs };
+import CreateNewMsg from "./CreateNewMsg/CreateNewMsg.service";
+export { GetPrevMsgs, CreateNewMsg };
