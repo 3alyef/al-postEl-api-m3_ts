@@ -17,6 +17,7 @@ class GetPrevMsgs {
             }
         } catch(error){
             console.log("Error ao buscar previous messages"+ error);
+            res.status(500).send(JSON.stringify({ error })).end();
         }
         
     }

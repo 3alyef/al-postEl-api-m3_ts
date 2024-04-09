@@ -1,2 +1,3 @@
 import { messageModel } from "./MessageModel/MessageModel";
-export { messageModel };
+import { userNetworkModel } from "./UserNetwork/UserNetwork";
+export { messageModel, userNetworkModel };

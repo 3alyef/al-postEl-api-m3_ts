@@ -1,3 +1,5 @@
 import previousMsgsController from "./PreviousMsgsController/PreviousMsgsController";
+import previousUserNetworkController from "./PreviousUserNetworkController/PreviousUserNetworkController";
 import setNewMsgController from "./SetNewMsgController/SetNewMsgController";
-export { previousMsgsController, setNewMsgController };
+import setNewUserNetworkController from "./SetNewUserNetwork/SetNewUserNetwork";
+export { previousMsgsController, previousUserNetworkController, setNewMsgController, setNewUserNetworkController };

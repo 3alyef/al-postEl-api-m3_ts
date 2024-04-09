@@ -7,8 +7,10 @@ router.get("/",(req: Request, res: Response)=>{
 })
 
 router.post("/previousMsgs", Controll.previousMsgsController.previousPost);
-router.post("/setNewMsg", Controll.setNewMsgController.newMsgPost)
+router.post("/setNewMsg", Controll.setNewMsgController.newMsgPost);
 
+router.post("/previousNetwork", Controll.previousUserNetworkController.previousUserNetworkPost);
+router.post("/setNewNetwork", Controll.setNewUserNetworkController.newUserNetworkPost);
 
 
 export default router;
