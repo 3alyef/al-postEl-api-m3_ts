@@ -24,13 +24,23 @@ class GetPrevMsgs {
 
     private async findMessages(userA: string, userB: string){
         try{
-            const messages: msgsDB[] = await messageModel.find({ fromUser: userA, toUser: userB }, "_id fromUser toUser message createdIn");
+            const messagesFromAToB: msgsDB[] = await messageModel.find({ fromUser: userA, toUser: userB }, "_id fromUser toUser message createdIn");
+
+            const messagesFromBToA: msgsDB[] = await messageModel.find({ fromUser: userB, toUser: userA }, "_id fromUser toUser message createdIn");
 
             let msg: msgsResponse[] = [];
             
-            messages.forEach((el)=>{
+            messagesFromAToB.forEach((el)=>{
                 const msgObj: msgsResponse = {
-                    _id: el._id, fromUser: el.fromUser, toUser: el.toUser, msg: el.message, createdIn: el.createdIn
+                    _id: el._id, fromUser: el.fromUser, toUser: el.toUser, message: el.message, createdIn: el.createdIn
+                }
+                msg.push(msgObj)
+
+            })
+
+            messagesFromBToA.forEach((el)=>{
+                const msgObj: msgsResponse = {
+                    _id: el._id, fromUser: el.fromUser, toUser: el.toUser, message: el.message, createdIn: el.createdIn
                 }
                 msg.push(msgObj)
 

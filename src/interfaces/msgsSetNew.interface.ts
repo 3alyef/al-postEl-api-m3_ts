@@ -2,7 +2,7 @@ export interface msgsResponse {
     _id: string;
     fromUser: string;
     toUser: string;
-    msg: string;
+    message: string;
     createdIn: string;
 }
 

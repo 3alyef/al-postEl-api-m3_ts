@@ -1,7 +1,7 @@
 export interface msgsRequest {
     fromUser: string;
     toUser: string;
-    msg: string;
+    message: string;
     createdIn: string;
 }
 
