@@ -12,6 +12,8 @@ router.post("/setNewMsg", Controll.setNewMsgController.newMsgPost);
 router.post("/previousNetwork", Controll.previousUserNetworkController.previousUserNetworkPost);
 router.post("/setNewNetwork", Controll.setNewUserNetworkController.newUserNetworkPost);
 
+router.post("/newGroup", Controll.setNewGroupController.newGroupPost)
+
 
 export default router;
 
