@@ -1,5 +1,5 @@
+import { groupModel } from "../../db/models/Models";
 import { newGroup } from "../../interfaces/group.interface";
-import { groupModel } from "../../db/models/GroupModel/GroupModel";
 import { Response } from "express";
 class CreateNewGroup {
     public async initialize(res: Response, group: newGroup){
