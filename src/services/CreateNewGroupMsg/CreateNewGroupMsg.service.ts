@@ -6,7 +6,7 @@ class CreateNewGroupMsg {
     public async initialize(req: Request<{body: msgsGroupRequest}>, res: Response){
         try {
             const {fromUser, toGroup, message, createdIn} = req.body;
-            console.log("here =>>",fromUser, toGroup, message, createdIn);
+            //console.log("here =>>",fromUser, toGroup, message, createdIn);
             const newMsg = await this.registrerNewMsg(fromUser, toGroup, message, createdIn);
             res.status(200).json(newMsg).end();
         } catch(error){

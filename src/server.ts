@@ -6,7 +6,7 @@ class Server {
     public server: express.Application;
     private ALLOW: string;
     constructor(){
-        this.ALLOW = process.env.ACCESS_ALLOW_ORIGIN || "http://localhost:8888";
+        this.ALLOW = process.env.URL_M2 || "http://localhost:8888";
         this.server = express();
         this.jsonParse();
         this.setupCors();

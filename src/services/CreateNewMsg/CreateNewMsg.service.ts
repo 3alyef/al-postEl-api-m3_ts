@@ -6,7 +6,7 @@ class CreateNewMsg {
     public async initialize(req: Request<{body: msgsRequest}>, res: Response){
         try {
             const {fromUser, toUser, message, createdIn} = req.body;
-            console.log("here =>>",fromUser, toUser, message, createdIn);
+            //console.log("here =>>",fromUser, toUser, message, createdIn);
             const newMsg = await this.registrerNewMsg(fromUser, toUser, message, createdIn);
             res.status(200).json(newMsg).end();
         } catch(error){
