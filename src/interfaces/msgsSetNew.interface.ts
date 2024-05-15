@@ -1,16 +1,15 @@
 export interface msgsResponse {
     _id: string;
     fromUser: string;
+    isDeletedToFrom: boolean;
     toUser: string;
     message: string;
     createdIn: string;
 }
 
-
-export interface msgsDB {
+export interface GroupsProps {
     _id: string;
-    fromUser: string;
-    toUser: string;
-    message: string;
-    createdIn: string;
+    groupName: string ;
+    groupParticipants: string ;
+    groupAdministratorParticipants: string
 }

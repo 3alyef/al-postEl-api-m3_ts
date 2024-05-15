@@ -3,6 +3,7 @@ export interface newGroup {
     groupParticipants: string[];
     groupAdministratorParticipants: string[]
 }
+/*
 export interface msgsGroupDB {
     _id: string;
     fromUser: string;
@@ -10,7 +11,7 @@ export interface msgsGroupDB {
     message: string;
     createdIn: string;
 }
-
+*/
 export interface msgsGroupRequest {
     fromUser: string;
     toGroup: string;

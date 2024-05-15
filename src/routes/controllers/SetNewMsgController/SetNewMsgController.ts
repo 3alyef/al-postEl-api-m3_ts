@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { CreateNewMsg } from "../../../services/Services";
-import { msgsResponse } from "../../../interfaces/msgsSetNew.interface";
+import { msgsRequest } from "../../../interfaces/msgsGetPrev.interface";
 
 class SetNewMsgController {
-    public async newMsgPost(req: Request<{body: msgsResponse}>, res: Response){     
+    public async newMsgPost(req: Request<{body: msgsRequest}>, res: Response){     
         new CreateNewMsg().initialize(req, res);    
     }
 }

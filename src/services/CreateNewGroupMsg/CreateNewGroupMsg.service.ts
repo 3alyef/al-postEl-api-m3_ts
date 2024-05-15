@@ -22,6 +22,7 @@ class CreateNewGroupMsg {
             const newGroupMessage = new messageGroupModel (
                 {
                     fromUser,
+                    isDeletedToFrom: false,
                     toGroup,
                     message,
                     createdIn

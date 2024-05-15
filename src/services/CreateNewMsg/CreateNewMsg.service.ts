@@ -6,7 +6,6 @@ class CreateNewMsg {
     public async initialize(req: Request<{body: msgsRequest}>, res: Response){
         try {
             const {fromUser, toUser, message, createdIn} = req.body;
-            //console.log("here =>>",fromUser, toUser, message, createdIn);
             const newMsg = await this.registrerNewMsg(fromUser, toUser, message, createdIn);
             res.status(200).json(newMsg).end();
         } catch(error){
@@ -22,6 +21,7 @@ class CreateNewMsg {
             const newMessage = new messageModel (
                 {
                     fromUser,
+                    isDeletedToFrom: false,
                     toUser,
                     message,
                     createdIn
@@ -36,8 +36,6 @@ class CreateNewMsg {
 
         }
     }
-
-    
 }
 
 export default CreateNewMsg;

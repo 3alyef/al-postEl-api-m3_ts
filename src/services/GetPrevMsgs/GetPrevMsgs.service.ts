@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { messageModel } from "../../db/models/Models";
-import { msgsDB, msgsResponse } from "../../interfaces/msgsSetNew.interface";
+import { msgsResponse as msgsDB, msgsResponse } from "../../interfaces/msgsSetNew.interface";
 import { usersRequest } from "../../interfaces/msgsGetPrev.interface";
 
 
@@ -10,6 +10,9 @@ class GetPrevMsgs {
             const {userA, userB} = req.body;
             if(userA && userB){
                 const resp = await this.findMessages(userA, userB);
+                
+                const respToSend = JSON.stringify(resp)
+                console.log('here',respToSend)
                 res.status(200).send(JSON.stringify(resp)).end();
             } else {
                 res.status(401).send(JSON.stringify(null)).end();
@@ -23,15 +26,15 @@ class GetPrevMsgs {
 
     private async findMessages(userA: string, userB: string){
         try{
-            const messagesFromAToB: msgsDB[] = await messageModel.find({ fromUser: userA, toUser: userB }, "_id fromUser toUser message createdIn");
+            const messagesFromAToB: msgsDB[] = await messageModel.find({ fromUser: userA, toUser: userB }, "_id fromUser isDeletedToFrom toUser message createdIn");
 
-            const messagesFromBToA: msgsDB[] = await messageModel.find({ fromUser: userB, toUser: userA }, "_id fromUser toUser message createdIn");
+            const messagesFromBToA: msgsDB[] = await messageModel.find({ fromUser: userB, toUser: userA }, "_id fromUser isDeletedToFrom toUser message createdIn");
 
             let msg: msgsResponse[] = [];
             
             messagesFromAToB.forEach((el)=>{
                 const msgObj: msgsResponse = {
-                    _id: el._id, fromUser: el.fromUser, toUser: el.toUser, message: el.message, createdIn: el.createdIn
+                    _id: el._id, fromUser: el.fromUser, toUser: el.toUser, message: el.message, createdIn: el.createdIn, isDeletedToFrom: el.isDeletedToFrom
                 }
                 msg.push(msgObj)
 
@@ -39,7 +42,7 @@ class GetPrevMsgs {
 
             messagesFromBToA.forEach((el)=>{
                 const msgObj: msgsResponse = {
-                    _id: el._id, fromUser: el.fromUser, toUser: el.toUser, message: el.message, createdIn: el.createdIn
+                    _id: el._id, fromUser: el.fromUser, toUser: el.toUser, message: el.message, createdIn: el.createdIn, isDeletedToFrom: el.isDeletedToFrom
                 }
                 msg.push(msgObj)
 

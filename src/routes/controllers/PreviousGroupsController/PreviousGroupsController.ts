@@ -8,7 +8,7 @@ class PreviousGroupsController {
             if(data){
                 res.status(200).json(data).end();
             }else {
-                
+                res.status(500).end()
             }
             
         } catch(error){

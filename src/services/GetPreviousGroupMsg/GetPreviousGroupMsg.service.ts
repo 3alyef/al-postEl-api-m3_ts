@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { messageGroupModel } from "../../db/models/Models";
-import { msgsGroupDB } from "../../interfaces/group.interface";
+import { msgsResponse } from "../../interfaces/msgsSetNew.interface";
 class GetPreviousGroupMsg{
     public async initialize(req: Request<{body: {group: string}}>, res: Response){      
         try{
@@ -20,7 +20,7 @@ class GetPreviousGroupMsg{
 
     private async getPreviousMsgs(group: string){
         try{
-            const msgs: msgsGroupDB[] = await messageGroupModel.find({ toGroup: group }, "_id fromUser toGroup message createdIn");
+            const msgs: msgsResponse[] = await messageGroupModel.find({ toGroup: group }, "_id fromUser isDeletedToFrom toGroup message createdIn");
 
             return msgs
         } catch(error){       
