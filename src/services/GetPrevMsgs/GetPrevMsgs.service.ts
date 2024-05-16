@@ -3,8 +3,8 @@ import { messageModel } from "../../db/models/Models";
 import { msgsResponse as msgsDB, msgsResponse } from "../../interfaces/msgsSetNew.interface";
 import { usersRequest } from "../../interfaces/msgsGetPrev.interface";
 
-export function ordenarMensagensPorData(mensagens: msgsDB[]): msgsDB[] {
-    return mensagens.sort((a, b) => new Date(a.createdIn).getTime() - new Date(b.createdIn).getTime());
+export function ordeMsgsByData(msgs: msgsDB[]): msgsDB[] {
+    return msgs.sort((a, b) => Date.parse(a.createdIn) - Date.parse(b.createdIn))
 };
 
 class GetPrevMsgs {
@@ -15,7 +15,7 @@ class GetPrevMsgs {
                 const msgs: msgsDB[] | null = await this.findMessages(userA, userB);
                 if(msgs){
                     
-                    const msgsOrdened: msgsDB[] = ordenarMensagensPorData(msgs);
+                    const msgsOrdened: msgsDB[] = ordeMsgsByData(msgs);
                     const respToSend = JSON.stringify(msgsOrdened)
                     console.log('here', respToSend)
                     res.status(200).send(respToSend).end();
