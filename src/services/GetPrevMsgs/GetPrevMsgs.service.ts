@@ -17,7 +17,7 @@ class GetPrevMsgs {
                     
                     const msgsOrdened: msgsDB[] = ordenarMensagensPorData(msgs);
                     const respToSend = JSON.stringify(msgsOrdened)
-                    console.log('here',respToSend)
+                    console.log('here', respToSend)
                     res.status(200).send(respToSend).end();
                 } else {
                     res.status(200).send(null).end();
