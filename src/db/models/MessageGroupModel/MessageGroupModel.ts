@@ -2,7 +2,7 @@ import { mongoose } from "../../DB";
 
 const NewMessageGroupScheme = new mongoose.Schema({
     fromUser: String,
-    isDeletedToFrom: Boolean,
+    deletedTo: String,
     toGroup: String,
     message: String,
     createdIn: String

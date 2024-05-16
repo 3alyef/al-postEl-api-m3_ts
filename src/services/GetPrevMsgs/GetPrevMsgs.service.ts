@@ -34,7 +34,7 @@ class GetPrevMsgs {
             
             messagesFromAToB.forEach((el)=>{
                 const msgObj: msgsResponse = {
-                    _id: el._id, fromUser: el.fromUser, toUser: el.toUser, message: el.message, createdIn: el.createdIn, isDeletedToFrom: el.isDeletedToFrom
+                    _id: el._id, fromUser: el.fromUser, toUser: el.toUser, message: el.message, createdIn: el.createdIn, deletedTo: el.deletedTo
                 }
                 msg.push(msgObj)
 
@@ -42,7 +42,7 @@ class GetPrevMsgs {
 
             messagesFromBToA.forEach((el)=>{
                 const msgObj: msgsResponse = {
-                    _id: el._id, fromUser: el.fromUser, toUser: el.toUser, message: el.message, createdIn: el.createdIn, isDeletedToFrom: el.isDeletedToFrom
+                    _id: el._id, fromUser: el.fromUser, toUser: el.toUser, message: el.message, createdIn: el.createdIn, deletedTo: el.deletedTo
                 }
                 msg.push(msgObj)
 

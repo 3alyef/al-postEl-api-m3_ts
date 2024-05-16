@@ -5,8 +5,8 @@ import { msgsRequest } from "../../interfaces/msgsGetPrev.interface";
 class CreateNewMsg {
     public async initialize(req: Request<{body: msgsRequest}>, res: Response){
         try {
-            const {fromUser, toUser, message, createdIn} = req.body;
-            const newMsg = await this.registrerNewMsg(fromUser, toUser, message, createdIn);
+            const {fromUser, deletedTo, toUser, message, createdIn}: msgsRequest = req.body;
+            const newMsg = await this.registrerNewMsg({fromUser, deletedTo, toUser, message, createdIn});
             res.status(200).json(newMsg).end();
         } catch(error){
             console.log("Error: "+error);
@@ -15,13 +15,13 @@ class CreateNewMsg {
         
     }
 
-    private async registrerNewMsg(fromUser: string, toUser:string, message: string, createdIn: string){
+    private async registrerNewMsg({fromUser, deletedTo, toUser, message, createdIn}: msgsRequest)  {
         
         try {
             const newMessage = new messageModel (
                 {
                     fromUser,
-                    isDeletedToFrom: false,
+                    deletedTo,
                     toUser,
                     message,
                     createdIn

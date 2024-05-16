@@ -3,17 +3,10 @@ export interface newGroup {
     groupParticipants: string[];
     groupAdministratorParticipants: string[]
 }
-/*
-export interface msgsGroupDB {
-    _id: string;
-    fromUser: string;
-    toGroup: string;
-    message: string;
-    createdIn: string;
-}
-*/
+
 export interface msgsGroupRequest {
     fromUser: string;
+    deletedTo: "none" | "justFrom" | "all";
     toGroup: string;
     message: string;
     createdIn: string;

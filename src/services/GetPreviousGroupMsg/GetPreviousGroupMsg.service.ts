@@ -18,9 +18,9 @@ class GetPreviousGroupMsg{
         }
     }
 
-    private async getPreviousMsgs(group: string){
+    private async getPreviousMsgs(group: string): Promise<msgsResponse[] | null>{
         try{
-            const msgs: msgsResponse[] = await messageGroupModel.find({ toGroup: group }, "_id fromUser isDeletedToFrom toGroup message createdIn");
+            const msgs: msgsResponse[] = await messageGroupModel.find({ toGroup: group }, "_id fromUser deletedTo toGroup message createdIn");
 
             return msgs
         } catch(error){       

@@ -5,9 +5,9 @@ import { msgsGroupRequest } from "../../interfaces/group.interface";
 class CreateNewGroupMsg {
     public async initialize(req: Request<{body: msgsGroupRequest}>, res: Response){
         try {
-            const {fromUser, toGroup, message, createdIn} = req.body;
+            const {fromUser, deletedTo, toGroup, message, createdIn}: msgsGroupRequest = req.body;
             //console.log("here =>>",fromUser, toGroup, message, createdIn);
-            const newMsg = await this.registrerNewMsg(fromUser, toGroup, message, createdIn);
+            const newMsg = await this.registrerNewMsg({fromUser, deletedTo, toGroup, message, createdIn});
             res.status(200).json(newMsg).end();
         } catch(error){
             console.log("Error: "+error);
@@ -16,13 +16,13 @@ class CreateNewGroupMsg {
         
     }
 
-    private async registrerNewMsg(fromUser: string, toGroup:string, message: string, createdIn: string){
+    private async registrerNewMsg({fromUser, deletedTo, toGroup, message, createdIn}: msgsGroupRequest){
         
         try {
             const newGroupMessage = new messageGroupModel (
                 {
                     fromUser,
-                    isDeletedToFrom: false,
+                    deletedTo,
                     toGroup,
                     message,
                     createdIn
