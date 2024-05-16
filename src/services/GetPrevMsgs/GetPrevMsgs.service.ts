@@ -40,22 +40,6 @@ class GetPrevMsgs {
             const messagesFromBToA: msgsDB[] = await messageModel.find({ fromUser: userB, toUser: userA }, "_id fromUser deletedTo toUser message createdIn");
 
             let msg: msgsResponse[] = [...messagesFromAToB, ...messagesFromBToA];
-            
-            /*messagesFromAToB.forEach((el)=>{
-                const msgObj: msgsResponse = {
-                    _id: el._id, fromUser: el.fromUser, toUser: el.toUser, message: el.message, createdIn: el.createdIn, deletedTo: el.deletedTo
-                }
-                msg.push(msgObj)
-
-            })
-
-            messagesFromBToA.forEach((el)=>{
-                const msgObj: msgsResponse = {
-                    _id: el._id, fromUser: el.fromUser, toUser: el.toUser, message: el.message, createdIn: el.createdIn, deletedTo: el.deletedTo
-                }
-                msg.push(msgObj)
-
-            })*/
             return msg
         } catch(error){       
             console.log("error ao usar model"+ error)
