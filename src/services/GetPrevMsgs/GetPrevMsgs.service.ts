@@ -3,17 +3,26 @@ import { messageModel } from "../../db/models/Models";
 import { msgsResponse as msgsDB, msgsResponse } from "../../interfaces/msgsSetNew.interface";
 import { usersRequest } from "../../interfaces/msgsGetPrev.interface";
 
+export function ordenarMensagensPorData(mensagens: msgsDB[]): msgsDB[] {
+    return mensagens.sort((a, b) => new Date(a.createdIn).getTime() - new Date(b.createdIn).getTime());
+};
 
 class GetPrevMsgs {
     public async initialize(req: Request<{body: usersRequest}>, res: Response){
         try{
             const {userA, userB} = req.body;
             if(userA && userB){
-                const resp = await this.findMessages(userA, userB);
+                const msgs: msgsDB[] | null = await this.findMessages(userA, userB);
+                if(msgs){
+                    
+                    const msgsOrdened: msgsDB[] = ordenarMensagensPorData(msgs);
+                    const respToSend = JSON.stringify(msgsOrdened)
+                    console.log('here',respToSend)
+                    res.status(200).send(respToSend).end();
+                } else {
+                    res.status(200).send(null).end();
+                }
                 
-                const respToSend = JSON.stringify(resp)
-                console.log('here',respToSend)
-                res.status(200).send(JSON.stringify(resp)).end();
             } else {
                 res.status(401).send(JSON.stringify(null)).end();
             }
@@ -24,7 +33,7 @@ class GetPrevMsgs {
         
     }
 
-    private async findMessages(userA: string, userB: string){
+    private async findMessages(userA: string, userB: string): Promise<msgsDB[] | null>{
         try{
             const messagesFromAToB: msgsDB[] = await messageModel.find({ fromUser: userA, toUser: userB }, "_id fromUser isDeletedToFrom toUser message createdIn");
 
