@@ -35,9 +35,9 @@ class GetPrevMsgs {
 
     private async findMessages(userA: string, userB: string): Promise<msgsDB[] | null>{
         try{
-            const messagesFromAToB: msgsDB[] = await messageModel.find({ fromUser: userA, toUser: userB }, "_id fromUser isDeletedToFrom toUser message createdIn");
+            const messagesFromAToB: msgsDB[] = await messageModel.find({ fromUser: userA, toUser: userB }, "_id fromUser deletedTo toUser message createdIn");
 
-            const messagesFromBToA: msgsDB[] = await messageModel.find({ fromUser: userB, toUser: userA }, "_id fromUser isDeletedToFrom toUser message createdIn");
+            const messagesFromBToA: msgsDB[] = await messageModel.find({ fromUser: userB, toUser: userA }, "_id fromUser deletedTo toUser message createdIn");
 
             let msg: msgsResponse[] = [...messagesFromAToB, ...messagesFromBToA];
             
