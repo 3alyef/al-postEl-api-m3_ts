@@ -4,8 +4,9 @@ import { msgsUpdateStatusRequest } from "../../interfaces/msgsGetPrev.interface"
 
 export async function UpdateMsgStatus(req: Request<{body: msgsUpdateStatusRequest}>, res: Response){
     try {
-        const {viewStatus, createdIn}: msgsUpdateStatusRequest = req.body;
-        const newMsg = await updateStatusMsg({viewStatus, createdIn});
+        const {fromUser, toUser, viewStatus, createdIn}: msgsUpdateStatusRequest = req.body;
+        const newMsg = await updateStatusMsg({fromUser, toUser, viewStatus, createdIn});
+        console.log({fromUser, toUser, viewStatus, createdIn})
         res.status(200).json(newMsg).end();
     } catch(error){
         console.log("Error: "+error);
@@ -13,10 +14,14 @@ export async function UpdateMsgStatus(req: Request<{body: msgsUpdateStatusReques
     }
 }
 
-async function updateStatusMsg({createdIn, viewStatus}: msgsUpdateStatusRequest) {
+async function updateStatusMsg({fromUser, toUser, createdIn, viewStatus}: msgsUpdateStatusRequest) {
     try {
         const result = await messageModel.updateOne(
-            { createdIn },
+            { 
+                fromUser,
+                toUser, 
+                createdIn 
+            },
             { $set: { viewStatus } }
         )
 

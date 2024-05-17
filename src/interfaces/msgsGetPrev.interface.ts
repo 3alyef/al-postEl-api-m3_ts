@@ -8,6 +8,8 @@ export interface msgsRequest {
 }
 
 export interface msgsUpdateStatusRequest {
+    fromUser: string;
+    toUser: string;
     createdIn: string;
     viewStatus: "onServer" | "delivered" | "seen";
 }
