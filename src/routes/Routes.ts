@@ -10,9 +10,17 @@ router.get("/",(req: Request, res: Response)=>{
 router.post("/previousMsgs", Controll.previousMsgsController.previousPost);
 router.post("/setNewMsg", Controll.setNewMsgController.newMsgPost);
 
-router.post("/setNewGroupMsg", Controll.setNewGroupMsgController.newGroupMsgPost)
-router.post("/previousGroupMsgs", Controll.previousGroupsMsgController.previousGroupMsgPost);
 
+// STATUS
+router.post("/statusMsgUpdate", Controll.setNewMsgController.setStatusMsgPost)
+//
+
+router.post("/previousGroupMsgs", Controll.previousGroupsMsgController.previousGroupMsgPost);
+router.post("/setNewGroupMsg", Controll.setNewGroupMsgController.newGroupMsgPost)
+
+// STATUS
+router.post("/statusGroupMsgUpdate", Controll.setNewGroupMsgController.setStatusGroupMsgPost)
+//
 
 router.post("/previousNetwork", Controll.previousUserNetworkController.previousUserNetworkPost);
 router.post("/setNewNetwork", Controll.setNewUserNetworkController.newUserNetworkPost);

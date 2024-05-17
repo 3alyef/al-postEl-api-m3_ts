@@ -1,10 +1,13 @@
 import { Request, Response } from "express";
-import { CreateNewMsg } from "../../../services/Services";
-import { msgsRequest } from "../../../interfaces/msgsGetPrev.interface";
+import { CreateNewMsg, UpdateMsgStatus } from "../../../services/Services";
+import { msgsRequest, msgsUpdateStatusRequest } from "../../../interfaces/msgsGetPrev.interface";
 
 class SetNewMsgController {
     public async newMsgPost(req: Request<{body: msgsRequest}>, res: Response){     
         new CreateNewMsg().initialize(req, res);    
+    }
+    public async setStatusMsgPost(req: Request<{body: msgsUpdateStatusRequest}>, res: Response){
+        UpdateMsgStatus(req, res)
     }
 }
 

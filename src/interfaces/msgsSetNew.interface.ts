@@ -1,6 +1,7 @@
 export interface msgsResponse {
     _id: string;
     fromUser: string;
+    viewStatus: "onServer" | "delivered" | "seen";
     deletedTo: "none" | "justFrom" | "all";
     toUser: string;
     message: string;

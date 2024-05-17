@@ -3,6 +3,7 @@ import { mongoose } from "../../DB";
 const NewMessageScheme = new mongoose.Schema({
     fromUser: String,
     deletedTo: String,
+    viewStatus: String,
     toUser: String,
     message: String,
     createdIn: String
