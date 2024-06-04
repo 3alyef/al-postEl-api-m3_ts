@@ -2,7 +2,7 @@ export interface msgsResponse {
     _id: string;
     fromUser: string;
     viewStatus: "onServer" | "delivered" | "seen";
-    deletedTo: "none" | "justFrom" | "all";
+    deletedTo: "none" | Map<string, "justTo" | "justFrom" | "all">;
     toUser: string;
     message: string;
     createdIn: string;

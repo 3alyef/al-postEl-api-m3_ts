@@ -20,8 +20,7 @@ class GetPreviousGroupMsg{
 
     private async getPreviousMsgs(group: string): Promise<msgsResponse[] | null>{
         try{
-            const msgs: msgsResponse[] = await messageGroupModel.find({ toGroup: group }, "_id fromUser deletedTo viewStatus toGroup message createdIn");
-
+            const msgs: msgsResponse[] = await messageGroupModel.find({ toGroup: group }, "_id fromUser deletedTo toUsers viewStatus toGroup message createdIn");
             return msgs
         } catch(error){       
             console.log("error ao usar model"+ error)

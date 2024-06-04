@@ -6,7 +6,7 @@ export interface newGroup {
 
 export interface msgsGroupRequest {
     fromUser: string;
-    deletedTo: "none" | "justFrom" | "all";
+    deletedTo: "none" | Map<string, "justTo" | "justFrom" | "all">;
     toUsers: string[];
     viewStatus?: "onServer" | Map<string, "delivered" | "seen">;
     message: string;
