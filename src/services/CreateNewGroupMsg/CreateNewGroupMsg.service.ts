@@ -22,18 +22,21 @@ class CreateNewGroupMsg {
     }
 
     private async registrerNewMsg({fromUser, deletedTo, viewStatus, toGroup, message, createdIn, toUsers}: msgsGroupRequest){
-        const viewStatusV = JSON.stringify(viewStatus);
-        const deletedToV = JSON.stringify(deletedTo)
+        let deletedToV;
+        if(deletedTo !== "none"){
+            deletedToV = JSON.stringify(deletedTo);
+        }
+        
         try {
             const newGroupMessage = new messageGroupModel (
                 {
                     createdIn,
-                    deletedTo: deletedToV,
+                    deletedTo: deletedToV || deletedTo,
                     fromUser,
                     message,
                     toGroup,
                     toUsers,
-                    viewStatus: viewStatusV
+                    viewStatus
                 }
             )
 
