@@ -38,9 +38,7 @@ class CreateNewGroupMsg {
                     toUsers,
                     viewStatus
                 }
-            )
-
-           
+            );
             await newGroupMessage.save();
             return newGroupMessage;
 
