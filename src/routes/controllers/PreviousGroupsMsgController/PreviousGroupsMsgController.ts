@@ -9,4 +9,4 @@ class PreviousGroupsMsgController {
 
 const previousGroupsMsgController = new PreviousGroupsMsgController();
 
-export default previousGroupsMsgController
+export default previousGroupsMsgController;

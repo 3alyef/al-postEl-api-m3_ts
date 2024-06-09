@@ -6,8 +6,8 @@ class GetPreviousGroupMsg{
         try{
             const {group} = req.body;
             if(group){
-                const resp = await this.getPreviousMsgs(group)
-                console.log("mensagens", resp)
+                const resp = await this.getPreviousMsgs(group);
+                console.log("mensagens", resp);
                 res.status(200).send(JSON.stringify(resp)).end();
             } else {
                 res.status(401).send(JSON.stringify(null)).end();
@@ -21,10 +21,10 @@ class GetPreviousGroupMsg{
     private async getPreviousMsgs(group: string): Promise<msgsResponse[] | null>{
         try{
             const msgs: msgsResponse[] = await messageGroupModel.find({ toGroup: group }, "_id fromUser deletedTo toUsers viewStatus toGroup message createdIn");
-            return msgs
+            return msgs;
         } catch(error){       
-            console.log("error ao usar model"+ error)
-            return null
+            console.log("error ao usar model"+ error);
+            return null;
         }
     }
 }
